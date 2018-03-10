@@ -18,9 +18,12 @@ namespace NUnitMockSample.ViewModels
         public SampleViewModel(ISample sample)
         {
             Sample = sample;
+
+            // async/awaitで実行する
             SampleMethodAsyncCommand = new ReactiveCommand();
             SampleMethodAsyncCommand.Subscribe(async () => await ViewModelAsyncMethod());
 
+            // Wait()で実行する
             SampleMethodWaitCommand = new ReactiveCommand();
             SampleMethodWaitCommand.Subscribe(() => ViewModelAsyncMethod().Wait());
         }
