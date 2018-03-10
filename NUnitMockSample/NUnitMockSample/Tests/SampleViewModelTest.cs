@@ -37,7 +37,8 @@ namespace NUnitMockSample.Tests
         {
             var sample = new Mock<ISample>() {CallBase = true};
             sample.Setup(m => m.MethodAsync())
-                .Throws(new HttpRequestException());
+                .ThrowsAsync(new HttpRequestException());
+//                .Throws(new HttpRequestException());
 
             var vm = new SampleViewModel(sample.Object);
             Assert.IsTrue(vm.SampleMethodAsyncCommand.CanExecute());
