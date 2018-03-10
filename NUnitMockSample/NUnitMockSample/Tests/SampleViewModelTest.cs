@@ -41,6 +41,8 @@ namespace NUnitMockSample.Tests
 
             var vm = new SampleViewModel(sample.Object);
             Assert.IsTrue(vm.SampleMethodAsyncCommand.CanExecute());
+
+            // 例外を受け取れない !!! no exception thrown !!!
             Assert.That(() => vm.SampleMethodAsyncCommand.Execute(), Throws.TypeOf<HttpRequestException>());
         }
 
