@@ -1,14 +1,10 @@
-﻿using NUnit.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System;
 using System.Net.Http;
-using System.Text;
-using System.Threading.Tasks;
 using Moq;
+using NUnit.Framework;
 using NUnitMockSample.Models;
 
-namespace NUnitMockSample
+namespace NUnitMockSample.Tests
 {
     [TestFixture]
     public class SampleTest
@@ -46,10 +42,12 @@ namespace NUnitMockSample
         [Test]
         public void MethodAsyncMockHttpRequestException()
         {
-            var sample = new Mock<ISample>();
+            var sample = new Mock<ISample>() { CallBase = true };
             sample.Setup(m => m.MethodAsync())
                 .Throws(new HttpRequestException());
 
+            // これでもOK
+            //Assert.That(async () => await sample.Object.MethodAsync(), Throws.TypeOf<HttpRequestException>());
             Assert.Throws<HttpRequestException>(() => sample.Object.MethodAsync());
         }
 
