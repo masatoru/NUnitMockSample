@@ -52,7 +52,7 @@ namespace NUnitMockSample.Tests
             }
             catch (Exception ex)
             {
-                Assert.AreEqual(typeof(HttpRequestException), ex.GetType());
+                Assert.AreEqual(typeof(HttpRequestException), ex.GetType());  //受け取れる!!
             }
         }
 
