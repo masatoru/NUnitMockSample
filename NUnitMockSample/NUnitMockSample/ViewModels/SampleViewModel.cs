@@ -12,7 +12,7 @@ namespace NUnitMockSample.ViewModels
     public class SampleViewModel
     {
         private ISample Sample { get; set; }
-        public ReactiveCommand SampleMethodCommand { get;}
+        public ReactiveCommand SampleMethodCommand { get; }
 
         public SampleViewModel(ISample sample)
         {

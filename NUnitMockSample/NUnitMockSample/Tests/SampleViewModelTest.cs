@@ -20,7 +20,7 @@ namespace NUnitMockSample.Tests
         [Test]
         public void ModelMethodMockExceptionTest()
         {
-            var sample = new Mock<ISample>() { CallBase = true };
+            var sample = new Mock<ISample>() {CallBase = true};
             sample.Setup(m => m.MethodAsync())
                 .Throws(new HttpRequestException());
 
@@ -28,6 +28,7 @@ namespace NUnitMockSample.Tests
 //            Assert.Throws<HttpRequestException>(async () => await vm.ViewModelMethod(sample.Object));
             Assert.That(async () => await vm.ViewModelMethod(), Throws.TypeOf<HttpRequestException>());
         }
+
         /// <summary>
         /// ReactivePropertyのComandを実行
         /// ただし、HttpRequestExceptionは取得できない
@@ -35,7 +36,7 @@ namespace NUnitMockSample.Tests
         [Test]
         public void CommandMockExceptionTest()
         {
-            var sample = new Mock<ISample>() { CallBase = true };
+            var sample = new Mock<ISample>() {CallBase = true};
             sample.Setup(m => m.MethodAsync())
                 .Throws(new HttpRequestException());
 
