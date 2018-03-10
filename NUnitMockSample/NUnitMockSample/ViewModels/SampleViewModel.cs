@@ -37,7 +37,7 @@ namespace NUnitMockSample.ViewModels
             catch (HttpRequestException ex)
             {
                 Console.WriteLine($"HttpRequestException Message={ex.Message}");
-                throw;
+                throw;  //このthrowがないとMockのThrowsで受け取れない
             }
             catch (Exception ex)
             {
