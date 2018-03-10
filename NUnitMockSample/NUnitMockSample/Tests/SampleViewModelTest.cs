@@ -33,7 +33,7 @@ namespace NUnitMockSample.Tests
         /// ただし、HttpRequestExceptionは取得できない
         /// </summary>
         [Test]
-        public void Asyncのコマンドを実行してThrowsだと受け取れないけどtrycatchでは受け取れる()
+        public void Asyncのコマンドを実行してThrowsTypeOfだと受け取れないけどtrycatchでは受け取れる()
         {
             var sample = new Mock<ISample>() {CallBase = true};
             sample.Setup(m => m.MethodAsync())
@@ -44,7 +44,7 @@ namespace NUnitMockSample.Tests
             Assert.IsTrue(vm.SampleMethodAsyncCommand.CanExecute());
 
             // 例外を受け取れない !!! no exception thrown !!!
-            //            Assert.That(() => vm.SampleMethodAsyncCommand.Execute(), Throws.TypeOf<HttpRequestException>());
+//                        Assert.That(() => vm.SampleMethodAsyncCommand.Execute(), Throws.TypeOf<HttpRequestException>());
 
             try
             {
@@ -52,7 +52,7 @@ namespace NUnitMockSample.Tests
             }
             catch (Exception ex)
             {
-                Assert.AreEqual(typeof(HttpRequestException), ex.GetType());  //受け取れる!!
+                Assert.AreEqual(typeof(HttpRequestException), ex.GetType()); //受け取れる!!
             }
         }
 
