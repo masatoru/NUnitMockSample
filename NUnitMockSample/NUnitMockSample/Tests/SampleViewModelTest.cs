@@ -18,14 +18,13 @@ namespace NUnitMockSample.Tests
         /// モデルのメソッドをMockで例外を返す→OK
         /// </summary>
         [Test]
-        public void ModelMethodMockExceptionTest()
+        public void Modelのメソッドの例外を受け取る()
         {
             var sample = new Mock<ISample>() {CallBase = true};
             sample.Setup(m => m.MethodAsync())
                 .Throws(new HttpRequestException());
 
             var vm = new SampleViewModel(sample.Object);
-//            Assert.Throws<HttpRequestException>(async () => await vm.ViewModelMethod(sample.Object));
             Assert.That(async () => await vm.ViewModelAsyncMethod(), Throws.TypeOf<HttpRequestException>());
         }
 
@@ -34,7 +33,7 @@ namespace NUnitMockSample.Tests
         /// ただし、HttpRequestExceptionは取得できない
         /// </summary>
         [Test]
-        public void CommandMockAsyncExceptionTest()
+        public void Asyncのコマンドを実行するけどExceptionを受け取れず()
         {
             var sample = new Mock<ISample>() {CallBase = true};
             sample.Setup(m => m.MethodAsync())
@@ -50,19 +49,19 @@ namespace NUnitMockSample.Tests
         /// AggregateExceptionが戻る
         /// </summary>
         [Test]
-        public void CommandMockExceptionTest()
+        public void Waitでコマンドを実行するとAggregateExceptionを受け取る()
         {
             var sample = new Mock<ISample>() {CallBase = true};
             sample.Setup(m => m.MethodAsync())
                 .Throws(new HttpRequestException());
 
             var vm = new SampleViewModel(sample.Object);
-            Assert.IsTrue(vm.SampleMethodCommand.CanExecute());
-            Assert.That(() => vm.SampleMethodCommand.Execute(), Throws.TypeOf<AggregateException>());
+            Assert.IsTrue(vm.SampleMethodWaitCommand.CanExecute());
+            Assert.That(() => vm.SampleMethodWaitCommand.Execute(), Throws.TypeOf<AggregateException>());
 
             try
             {
-                vm.SampleMethodCommand.Execute();
+                vm.SampleMethodWaitCommand.Execute();
             }
             catch (AggregateException ex)
             {
