@@ -17,35 +17,13 @@ namespace NUnitMockSample.Models
     {
         public void Method()
         {
-            try
-            {
-                Console.WriteLine("Hello");
-            }
-            catch (HttpRequestException ex)
-            {
-                Console.WriteLine($"HttpRequestException Message={ex.Message}");
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Exception Message={ex.Message}");
-            }
+            Console.WriteLine("Hello");
         }
 
         public async Task MethodAsync()
         {
-            try
-            {
-                await Task.Delay(1);
-                Console.WriteLine("Hello");
-            }
-            catch (HttpRequestException ex)
-            {
-                Console.WriteLine($"HttpRequestException Message={ex.Message}");
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Exception Message={ex.Message}");
-            }
+            await Task.Delay(1);
+            Console.WriteLine("Hello　Async");
         }
     }
 }
