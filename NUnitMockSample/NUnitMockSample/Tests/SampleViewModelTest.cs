@@ -33,7 +33,7 @@ namespace NUnitMockSample.Tests
         /// ただし、HttpRequestExceptionは取得できない
         /// </summary>
         [Test]
-        public void Asyncのコマンドを実行してThrowsだと受け取れないけどcatchではを受け取れる()
+        public void Asyncのコマンドを実行してThrowsだと受け取れないけどtrycatchでは受け取れる()
         {
             var sample = new Mock<ISample>() {CallBase = true};
             sample.Setup(m => m.MethodAsync())
